@@ -1,4 +1,4 @@
-)## TopCoder Golang Challenges
+## TopCoder Golang Challenges
 
 My solutions to the TopCoder Golang Challenges.
 
