@@ -1,4 +1,4 @@
-package main
+package challenge2
 
 import (
 	"errors"
@@ -44,13 +44,13 @@ func getTheBestEngineer(names []string, votes []string) string {
 	return names[maxIdx]
 }
 
-type problemDataSet struct {
+type problem1Data struct {
 	profNames []string
 	profVotes []string
 }
 
-func main() {
-	problemData := []problemDataSet{
+func Challenge2P1() {
+	problemDataSet := []problem1Data{
 		{[]string{"Toshi", "Jun", "Teru", "Chihiro"}, []string{"Jun", "Chihiro", "Toshi", "Toshi"}},
 		{[]string{"Toshi", "Jun", "Teru", "Chihiro"}, []string{"Teru", "Teru", "Jun", "Jun"}},
 		{[]string{"Toshi", "Jun", "Teru", "Chihiro"}, []string{"Toshi", "Toshi", "Jun", "Jun"}},
@@ -58,8 +58,8 @@ func main() {
 		{[]string{"PhpLove", "phplove", "phpLove", "Phplove"}, []string{"phpLove", "phpLove", "phpLove", "PhpLove"}},
 	}
 
-	for idx, data := range problemData {
-		fmt.Printf("Problem No %d, Winning Prof: %s\n", idx,
+	for idx, data := range problemDataSet {
+		fmt.Printf("Input Data: %d, Winning Prof: %s\n", idx,
 			getTheBestEngineer(data.profNames, data.profVotes))
 	}
 }

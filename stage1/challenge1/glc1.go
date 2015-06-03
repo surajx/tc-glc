@@ -1,4 +1,4 @@
-package main
+package challenge1
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ func minimumCost(altitudeSlice []int) int {
 	return cost
 }
 
-func main() {
+func Challenge1() {
 
 	inputData := [][]int{
 		[]int{30, 20, 20, 10},

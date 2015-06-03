@@ -1,4 +1,4 @@
-package main
+package challenge2
 
 import (
 	"fmt"
@@ -26,15 +26,13 @@ func minFloors(M int, heights []int) int {
 	return minCost
 }
 
-type problemData struct {
+type problem2Data struct {
 	maxJump         int
 	buildingHeights []int
 }
 
-var problemDataSet []problemData
-
-func init() {
-	problemDataSet = []problemData{
+func Challenge2P2() {
+	problemDataSet := []problem2Data{
 		{2, []int{1, 2, 1, 4, 3}},
 		{3, []int{1, 3, 5, 2, 1}},
 		{1, []int{43, 19, 15}},
@@ -42,11 +40,8 @@ func init() {
 		{12, []int{25, 18, 38, 1, 42, 41, 14, 16, 19, 46, 42, 39,
 			38, 31, 43, 37, 26, 41, 33, 37, 45, 27, 19, 24, 33, 11, 22, 20, 36, 4, 4}},
 	}
-}
-
-func main() {
 	for idx, data := range problemDataSet {
-		fmt.Printf("Problem No #%d, Minimium Floors: %d\n", idx,
+		fmt.Printf("Input Data: #%d, Minimium Floors: %d\n", idx,
 			minFloors(data.maxJump, data.buildingHeights))
 	}
 }
