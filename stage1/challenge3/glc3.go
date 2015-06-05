@@ -2,11 +2,34 @@ package challenge3
 
 import (
 	"fmt"
+	"io"
+	"net/http"
+	"strconv"
+	"strings"
+
 	"github.com/surajx/tc-glc/stage1/challenge3/dice"
 )
 
 type problemData struct {
 	rolls []string
+}
+
+func chk(err error) {
+	if err != nil {
+		fmt.Println(err)
+		panic(err)
+	}
+}
+
+func runMinimumFaces(rw http.ResponseWriter, req *http.Request) {
+	req.ParseForm()
+	problemDataString := req.FormValue("r")
+	problemDataSlice := []string{}
+	for _, roll := range strings.Split(problemDataString, ",") {
+		problemDataSlice = append(problemDataSlice, roll)
+	}
+	io.WriteString(rw, strconv.Itoa(dice.MinimumFaces(problemDataSlice)))
+	//rw.Write([]byte(strconv.Itoa(dice.MinimumFaces(problemDataSlice))))
 }
 
 func Challenge3() {
@@ -26,4 +49,8 @@ func Challenge3() {
 	for idx, data := range problemDataSet {
 		fmt.Printf("Input Data: #%d, Minimium Faces: %d\n", idx, dice.MinimumFaces(data.rolls))
 	}
+
+	http.HandleFunc("/mf", runMinimumFaces)
+	err := http.ListenAndServe(":8899", nil)
+	chk(err)
 }
