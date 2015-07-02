@@ -21,7 +21,7 @@ func minimumCost(altitudeSlice []int) int {
 	return cost
 }
 
-func Challenge1() {
+func Challenge1(doneChan chan bool) {
 
 	inputData := [][]int{
 		[]int{30, 20, 20, 10},
@@ -35,4 +35,5 @@ func Challenge1() {
 	for _, data := range inputData {
 		fmt.Printf("Input Altitude Data: %v, Minimum Cost: %d\n", data, minimumCost(data))
 	}
+	doneChan <- true
 }

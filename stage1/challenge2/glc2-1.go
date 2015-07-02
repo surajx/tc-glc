@@ -49,7 +49,7 @@ type problem1Data struct {
 	profVotes []string
 }
 
-func Challenge2P1() {
+func Challenge2P1(doneChan chan bool) {
 	problemDataSet := []problem1Data{
 		{[]string{"Toshi", "Jun", "Teru", "Chihiro"}, []string{"Jun", "Chihiro", "Toshi", "Toshi"}},
 		{[]string{"Toshi", "Jun", "Teru", "Chihiro"}, []string{"Teru", "Teru", "Jun", "Jun"}},
@@ -62,4 +62,5 @@ func Challenge2P1() {
 		fmt.Printf("Input Data: %d, Winning Prof: %s\n", idx,
 			getTheBestEngineer(data.profNames, data.profVotes))
 	}
+	doneChan <- true
 }

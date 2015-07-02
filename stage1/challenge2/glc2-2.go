@@ -31,7 +31,7 @@ type problem2Data struct {
 	buildingHeights []int
 }
 
-func Challenge2P2() {
+func Challenge2P2(doneChan chan bool) {
 	problemDataSet := []problem2Data{
 		{2, []int{1, 2, 1, 4, 3}},
 		{3, []int{1, 3, 5, 2, 1}},
@@ -44,4 +44,5 @@ func Challenge2P2() {
 		fmt.Printf("Input Data: #%d, Minimium Floors: %d\n", idx,
 			minFloors(data.maxJump, data.buildingHeights))
 	}
+	doneChan <- true
 }

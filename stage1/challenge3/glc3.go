@@ -14,13 +14,6 @@ type problemData struct {
 	rolls []string
 }
 
-func chk(err error) {
-	if err != nil {
-		fmt.Println(err)
-		panic(err)
-	}
-}
-
 func runMinimumFaces(rw http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
 	problemDataString := req.FormValue("r")
@@ -29,7 +22,6 @@ func runMinimumFaces(rw http.ResponseWriter, req *http.Request) {
 		problemDataSlice = append(problemDataSlice, roll)
 	}
 	io.WriteString(rw, strconv.Itoa(dice.MinimumFaces(problemDataSlice)))
-	//rw.Write([]byte(strconv.Itoa(dice.MinimumFaces(problemDataSlice))))
 }
 
 func Challenge3() {
@@ -50,7 +42,5 @@ func Challenge3() {
 		fmt.Printf("Input Data: #%d, Minimium Faces: %d\n", idx, dice.MinimumFaces(data.rolls))
 	}
 
-	http.HandleFunc("/mf", runMinimumFaces)
-	err := http.ListenAndServe(":8899", nil)
-	chk(err)
+	http.HandleFunc("/stage1/c3", runMinimumFaces)
 }
