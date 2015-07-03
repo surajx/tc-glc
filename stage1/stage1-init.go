@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	TOTAL_CHALLEGE_COUNT    = 5
+	TOTAL_CHALLEGE_COUNT    = 6
 	NETWORK_CHALLENGE_COUNT = 3
 )
 
