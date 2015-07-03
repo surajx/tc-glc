@@ -15,7 +15,7 @@ type problemData struct {
 	timesBought []int
 }
 
-func runCountBigShoppers(rw http.ResponseWriter, req *http.Request) {
+func runCountBigShoppersHTTP(rw http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
 	totalRaw := req.FormValue("t")
 	itemsBoughtRaw := req.FormValue("i")
@@ -52,5 +52,5 @@ func Challenge4() {
 			data, survey.CountBigShoppers(data.total, data.timesBought))
 	}
 
-	http.HandleFunc("/stage1/c4", runCountBigShoppers)
+	http.HandleFunc("/stage1/c4", runCountBigShoppersHTTP)
 }

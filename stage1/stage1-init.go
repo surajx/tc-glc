@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	TOTAL_CHALLEGE_COUNT = 5
-	HTTP_CHALLENGE_COUNT = 2
+	TOTAL_CHALLEGE_COUNT    = 5
+	NETWORK_CHALLENGE_COUNT = 3
 )
 
 func chk(err error) {
@@ -42,12 +42,13 @@ func Stage1() {
 	challenge3.Challenge3()
 	fmt.Println("\n####Executing Challenge 4####")
 	challenge4.Challenge4()
+	challenge4.Challenge4_tcp()
 	http.HandleFunc("/stop", func(rw http.ResponseWriter, req *http.Request) {
 		//Need to use custom code to gracefully stop http server
 		//http://www.hydrogen18.com/blog/stop-listening-http-server-go.html
 		//http://rcrowley.org/articles/golang-graceful-stop.html
 		//stopping all http server based challenges
-		for i := 0; i < HTTP_CHALLENGE_COUNT; i++ {
+		for i := 0; i < NETWORK_CHALLENGE_COUNT; i++ {
 			doneChan <- true
 		}
 		io.WriteString(rw, "Server Stopped.")
@@ -56,5 +57,6 @@ func Stage1() {
 		err := http.ListenAndServe(":8899", nil)
 		chk(err)
 	}()
+	fmt.Println("Visit http://localhost:8899/stop to stop server and exit application.")
 	<-stopChan
 }
